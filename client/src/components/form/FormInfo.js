@@ -2,8 +2,8 @@ import { Form, Button } from "react-bootstrap";
 import Input from "./Input";
 const FormInfo = (props) => {
   const formStyle = {
-    marginLeft: 250,
-    marginRight: 350,
+    // marginLeft: 250,
+    // marginRight: 350,
     border: "solid 1px",
     boxShadow: "2px 2px",
     marginTop: "20px",

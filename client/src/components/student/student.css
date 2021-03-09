@@ -1,0 +1,22 @@
+.student{
+    max-width: 100%;
+    overflow: hidden;
+
+}
+ 
+
+.student .row{
+    width: 100%;
+    margin: 0;
+}
+.row .side_bar{
+    padding: 0;
+}
+.row .soumission{
+    height: 95vh;
+    margin: 0;
+    border-radius: 0;
+    
+
+}
+

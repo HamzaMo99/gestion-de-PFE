@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './signin.css'
 
-
 function SignIn() {
 
     let [username, setUsername] = useState("");
@@ -21,10 +20,8 @@ function SignIn() {
 
 
     return (
+
         <div className='sign'>
-
-
-
             <form className='login-form'>
                 <div className="flex-row">
                     <label className="lf--label" htmlFor="username">
