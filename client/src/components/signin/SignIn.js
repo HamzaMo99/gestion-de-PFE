@@ -1,26 +1,67 @@
 import React, { useState } from 'react'
+import ErrorModal from '../modals/ErrorModal'
 import './signin.css'
 
-function SignIn() {
+function SignIn(props) {
 
     let [username, setUsername] = useState("");
     let [password, setPassword] = useState("");
 
+    const [show, setShow] = useState(false);
+    const [error, setError] = useState("");
+
     function usernameOnChangeHandler(evt) {
         setUsername(evt.target.value)
-        console.log(username)
     }
 
     function passwordOnChangeHandler(evt) {
         setPassword(evt.target.value)
-        console.log(password)
     }
 
 
+    const submitHandler = async event => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch('http://localhost:5000/api/users/login',
+            {
+                method:'Post',
+                headers:{
+                    'Content-Type' : 'application/json',
+                    'Accept' : 'application/json',
+                    'Authorization' : 'Bearer <token_here>'
+                
+                },
+                body:JSON.stringify({
+                    username:username,
+                    password:password
+                })
+            });
+
+            const responseData = await response.json();
+
+            if(!response.ok){
+             setError(responseData.message)
+             setShow(true);
+             }
+            else{
+                props.history.push('/student');
+            }
+
+            
+
+
+            
+        
+        } catch (error) {
+            
+        }
+    }
 
 
     return (
-
+        <React.Fragment>
+            <ErrorModal show={show} setShow={setShow} error={error} />
         <div className='sign'>
             <form className='login-form'>
                 <div className="flex-row">
@@ -41,12 +82,14 @@ function SignIn() {
                     </label>
                     <input id="password" className='lf--input' placeholder='Password' type='password' onChange={passwordOnChangeHandler} ></input>
                 </div>
-                <input className='lf--submit' type='submit' value='LOGIN'></input>
+                <input className='lf--submit' type='submit' value='LOGIN' onClick={submitHandler} ></input>
 
             </form>
 
 
         </div>
+
+        </React.Fragment> 
     )
 }
 
