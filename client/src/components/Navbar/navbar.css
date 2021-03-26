@@ -1,8 +1,11 @@
 .sub-header {
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
+
   }
-  
+  /* .navbar{
+    position: fixed;
+  } */
   /*
    * Top navigation
    * Hide default border to remove 1px line.
@@ -11,6 +14,13 @@
     border: 0;
   }
    
+  button.bg-primary, button.bg-primary {
+    background-color: #148f77 !important;
+}
+#mainNav .navbar-toggler {
+  font-size: 80%;
+  padding: 0.8rem;
+}
   #navbar{
     background-color:#222;
   }

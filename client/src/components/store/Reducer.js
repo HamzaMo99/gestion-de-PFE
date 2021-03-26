@@ -2,7 +2,8 @@ import * as ActionsTypes from './reducers/actions'
 
 const initialState = {
   isLoged:false,
-  userId:null
+  userId:null,
+  userInfo:{}
 }
 
 const reducer = (state=initialState,action) =>{
@@ -11,7 +12,8 @@ const reducer = (state=initialState,action) =>{
         return {
 
             isLoged:true,
-            userId:action.user
+            userId:action.userid,
+            userInfo:action.userinfo
         }
     }
 

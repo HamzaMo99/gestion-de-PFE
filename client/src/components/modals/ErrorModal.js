@@ -14,7 +14,7 @@ function ErrorModal(props) {
 
         <Modal show={props.show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{props.titre}</Modal.Title>
           </Modal.Header>
           <Modal.Body ref={ref} >
                 {props.error}

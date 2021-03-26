@@ -4,6 +4,9 @@ const mongoose = require('mongoose')
 const app = express()
 const bodyParser = require('body-parser')
 const usersRoutes = require('./routes/users')
+const stageRoutes =require('./routes/stage')
+const enseignantRoutes =require('./routes/enseignantRoutes')
+const studentsRoutes =require('./routes/students')
 const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
 app.use(bodyParser.json());
@@ -22,6 +25,10 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/users', usersRoutes);
+app.use('/api/stage', stageRoutes);
+app.use('/api/enseignant', enseignantRoutes);
+
+app.use('/api/students', studentsRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

@@ -3,6 +3,7 @@ import {Button} from 'react-bootstrap'
 import './soumission.css'
 import Table from 'react-bootstrap/Table'
 import FormPfe from '../modals/FormPfe'
+import FormInfo from '../../form/FormInfo'
 
 function Soumission(){
 
@@ -10,12 +11,14 @@ function Soumission(){
     return(
         <div className="container soumission-table">
            <div className="row header">
-               Mes soumissions
+               Ma soumission
            </div>
-           <div className="newSubmission">
-            <FormPfe/>
-            </div>
-            <div className="table">
+           {/* <div className="newSubmission">
+           <Button variant="success" >Modifier Soumission</Button>
+            </div> */}
+
+          <FormInfo/>
+            {/* <div className="table">
                
             <Table striped bordered hover size="sm">
   <thead>
@@ -34,8 +37,8 @@ function Soumission(){
       <td>moukrim</td>
     </tr>
   </tbody>
-</Table>
-            </div>
+</Table> */}
+            {/* </div> */}
 
 
         </div>

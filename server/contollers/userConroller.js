@@ -1,5 +1,8 @@
 const HttpError = require('../models/Http-error')
 const User = require('../models/user')
+const mongoose = require('mongoose')
+const Etudiant =require('../models/etudiant')
+const Filiere =require('../models/filiere')
 
 
 // Login 
@@ -22,42 +25,97 @@ const login = async (req,res,next) =>{
 
     if (!user || user.password !== password) {
         const err= new HttpError(
-            'invalid credentials,could not log you in.',
+            'logging in failed,please try again later.',
             401
         );
         return next(err)
     }
+    
+    let responsedata
+    if(user.admin==='0')
+    {
+      responsedata=await Etudiant.findById(user.userId)
 
-    res.json({message:'logged in hamzza',user:user})
+    }
 
-    res.json({users})
+    res.json({message:'logged student',user:responsedata})
 }
-
-
-// ADd user
 
 
 
 const addUser= async(req,res,next) =>{
-    const { userName,password} = req.body;
-    const newUser = new User({
-        userName,
-        password
-    });
+    const { cne,cin,nom,prenom,dateNaissance,genre,matricule,telephone,filiere,promotion,userName,password} = req.body;
+   
 
-    let user ;
+
+    let existingStudent
+    let existingUser
     try {
-        await newUser.save();
+      existingStudent = await Etudiant.findOne({ cne:cne })
+      existingUser = await User.findOne({userName:userName})
     } catch (err) {
+      const error = new HttpError(
+        'Signing up failed, please try again later.',
+        500
+      );
+      return next(error);
+    }
+    
+    if (existingUser || existingStudent) {
+      const error = new HttpError(
+        'Student exists already, please login instead.',
+        422
+      );
+      return next(error);
+    }
+      
+    let nomfiliere ;
+
+    try {
+         nomfiliere = await Filiere.findOne({idFiliere:filiere})
+        
+    } catch (er) {
         const error = new HttpError(
-            'Signing up failed, please try again.',
+            'finding filiere failed, please try again.',
             500
           );
-          return next(error);
+          return next(error); 
         
     }
 
-    res.status(201).json({user:newUser});
+    const newStudent = new Etudiant({
+        cne,cin,nom,prenom,dateNaissance,genre,matricule,telephone,promotion
+    });
+
+    const newUser = new User({
+        userName,
+        password,
+        admin:'0'
+    })
+
+   try { 
+    const sess = await mongoose.startSession();    // open a session 
+    sess.startTransaction();
+    newStudent.filiere=nomfiliere;            
+    await newStudent.save({session:sess});
+    newUser.userId=newStudent;
+    await newUser.save({session:sess});
+    nomfiliere.etudiants.push(newStudent)
+    await nomfiliere.save();
+
+    sess.commitTransaction();
+   
+       
+   } catch (er) {
+    const error = new HttpError(
+        'Adding student failed, please try again.',
+        500
+      );
+      return next(error);    
+   }
+    
+
+    res.status(201).json({student:newStudent,user:newUser});
 }
 
 exports.login = login;

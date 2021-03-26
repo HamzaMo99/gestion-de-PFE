@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import ErrorModal from '../modals/ErrorModal'
+import ErrorModal from '../modals/ErrorModal';
+import * as actionTypes from '../store/reducers/actions' ;
+import {connect} from 'react-redux';
 import './signin.css'
 
 function SignIn(props) {
@@ -29,7 +31,7 @@ function SignIn(props) {
                 headers:{
                     'Content-Type' : 'application/json',
                     'Accept' : 'application/json',
-                    'Authorization' : 'Bearer <token_here>'
+                   
                 
                 },
                 body:JSON.stringify({
@@ -45,6 +47,8 @@ function SignIn(props) {
              setShow(true);
              }
             else{
+                props.onLoginSucceed(responseData.user._id,responseData.user)
+                console.log(responseData.user)
                 props.history.push('/student');
             }
 
@@ -61,7 +65,7 @@ function SignIn(props) {
 
     return (
         <React.Fragment>
-            <ErrorModal show={show} setShow={setShow} error={error} />
+            <ErrorModal show={show} setShow={setShow} error={error} titre='Error' />
         <div className='sign'>
             <form className='login-form'>
                 <div className="flex-row">
@@ -92,5 +96,18 @@ function SignIn(props) {
         </React.Fragment> 
     )
 }
+// const mapStateToProps = state =>{
+//   return {
+//     isLoged:state.isLoged,
+//     userId: state.userId,
+//     userInfo:state.userInfo
+//   }
+// }
 
-export default SignIn;
+const mapDispatchToProps =(dispatch) =>{
+    return{
+        onLoginSucceed:(userid,userinfo)=> dispatch({type:actionTypes.LOGED,userid:userid,userinfo})
+    }
+}
+
+export default connect(null,mapDispatchToProps)(SignIn);  

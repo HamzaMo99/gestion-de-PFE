@@ -12,6 +12,7 @@
 @media only screen and (min-device-width: 480px) {
   .sidebar-container {
     position: fixed;
+    margin-top: 4em;
     width: 100%;
     height: 100%;
     left: 0;
@@ -72,6 +73,12 @@
   transition: width 0.2s ease-in;
   width: 3px;
   z-index: -1;
+}
+
+.activeSideBar{
+  /* background-color: #2574A9;
+  width: 100%;
+  color: #fff; */
 }
 
 .sidebar-navigation li:hover::before {

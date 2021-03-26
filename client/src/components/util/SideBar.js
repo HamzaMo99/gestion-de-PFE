@@ -1,18 +1,19 @@
 import React from "react";
 import "./sidebar.css";
+import { NavLink } from 'react-router-dom';
 
 function SideBar() {
   return (
     <div className="sidebar-container">
       <ul className="sidebar-navigation">
         <li>
-          <a href="#">
-            <i className="fa fa-home" aria-hidden="true"></i> Homepage
-          </a>
+          <NavLink to="/student"  exact activeClassName="activeSideBar">
+            <i className="fa fa-home"  aria-hidden="true"  ></i> Homepage
+          </NavLink>
         </li>
         <li>
           <a href="#">
-          <i className="far fa-folder-open"></i> Mes Soumissions
+          <i className="far fa-folder-open"></i> Ma Soumission
           </a>
         </li>
         {/* <li>
