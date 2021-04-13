@@ -93,7 +93,7 @@ const FormInfo = (props) => {
        })
 
       try {
-          const response = await fetch('http://localhost:5000/api/stage/newstage',
+          const response = await fetch('http://localhost:5000/api/stages/newstage',
           {
               method:'Post',
               headers:{
@@ -114,7 +114,7 @@ const FormInfo = (props) => {
                   startDate:startDate.toISOString().substring(0, 10),
                   finDate:finDate.toISOString().substring(0, 10),
                   userId:props.userId,
-                  binome: enBinome ? '' : selectedBinome.value
+                  binome: enBinome ? selectedBinome.value : ''
 
               })
           });
@@ -292,7 +292,7 @@ const FormInfo = (props) => {
             id="formFiliere"
             label="Filiere"
             type="text"
-            placeHolder=""
+            placeHolder={props.userInfo.filiere.nomFiliere}
             className="text-muted"
             readonly={true}
           />

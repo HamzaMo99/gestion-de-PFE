@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/users', usersRoutes);
-app.use('/api/stage', stageRoutes);
+app.use('/api/stages', stageRoutes);
 app.use('/api/enseignant', enseignantRoutes);
 
 app.use('/api/students', studentsRoutes);

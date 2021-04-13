@@ -14,4 +14,8 @@ router.post('/newstage',
 
  stageController.newStage)
 
+ router.get('/',stageController.getStages)
+ router.post('/valider',stageController.validerStage)
+ router.delete('/delete',stageController.deleteStage)
+
 module.exports = router;

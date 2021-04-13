@@ -35,6 +35,8 @@ const login = async (req,res,next) =>{
     if(user.admin==='0')
     {
       responsedata=await Etudiant.findById(user.userId)
+      filiere = await Filiere.findById(responsedata.filiere)
+      responsedata.filiere = filiere
 
     }
 
@@ -82,6 +84,13 @@ const addUser= async(req,res,next) =>{
           return next(error); 
         
     }
+    if(nomfiliere== null){
+      const error = new HttpError(
+        'finding filiere failed, please try again.',
+        500
+      );
+      return next(error);
+    }
 
     const newStudent = new Etudiant({
         cne,cin,nom,prenom,dateNaissance,genre,matricule,telephone,promotion
@@ -92,6 +101,8 @@ const addUser= async(req,res,next) =>{
         password,
         admin:'0'
     })
+
+
 
    try { 
     const sess = await mongoose.startSession();    // open a session 
