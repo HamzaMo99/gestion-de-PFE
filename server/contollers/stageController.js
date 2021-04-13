@@ -18,8 +18,6 @@ const newStage= async(req,res,next) =>{
   }
     const {binome, email,tel,organisme,rep,encExterne,description,ville,pays,selectedProfs,startDate, finDate,userId } = req.body;
    
-
-
     let existingStudent = []
     try {
       if(binome===''){
@@ -86,8 +84,7 @@ const newStage= async(req,res,next) =>{
         dateDebut:startDate,
         dateFin : finDate,
         etudiant:userId,
-        enseignants:enseignant
-        
+        enseignants:enseignant     
     });
 
    
@@ -136,5 +133,26 @@ const newStage= async(req,res,next) =>{
     res.status(201).json({message:"stage submitted"});
 }
 
+const getstages = async (req,res,next) =>{
 
+  let stages
+  try {
+    stages = await Stage.find({},['dateDebut','dateFin','_id'])
+  } catch (error) {
+    const err = new HttpError(
+      'getting stages failed',
+      500
+    );
+
+    return next(err);
+  }
+
+ 
+
+  res.json({stages:stages})
+}
+
+
+
+exports.getstages  = getstages ;
 exports.newStage = newStage;

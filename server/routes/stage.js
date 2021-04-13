@@ -1,4 +1,5 @@
 const express = require('express');
+const stagesController = require('../contollers/stagesController')
 const stageController = require('../contollers/stageController')
 const router =express.Router();
 const { check } = require('express-validator');
@@ -13,5 +14,8 @@ router.post('/newstage',
 ],
 
  stageController.newStage)
+
+ router.get('/',
+ stagesController.getstages)
 
 module.exports = router;
