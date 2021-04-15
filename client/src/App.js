@@ -22,7 +22,7 @@ function App(props) {
                   {props.isLoged ?  <Student/> : <Redirect to="/" /> }
                 </Route>
                 <Route path='/chefdept'>
-                  <ChefDept/>
+                  <ChefDept/> 
                 </Route>
           </Switch>
   
