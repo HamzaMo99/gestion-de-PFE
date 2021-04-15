@@ -3,6 +3,7 @@ const User = require('../models/user')
 const mongoose = require('mongoose')
 const Etudiant =require('../models/etudiant')
 const Filiere =require('../models/filiere')
+const Enseignant = require('../models/enseignant')
 
 
 // Login 
@@ -31,16 +32,29 @@ const login = async (req,res,next) =>{
         return next(err)
     }
     
-    let responsedata
-    if(user.admin==='0')
+    let responsedata,role;
+    if(user.typeUser==='0')
     {
-      responsedata=await Etudiant.findById(user.userId)
+      responsedata=await Etudiant.findById(user.studentId)
       filiere = await Filiere.findById(responsedata.filiere)
-      responsedata.filiere = filiere
+      responsedata.filiere = filiere;
+      role='0';
 
     }
 
-    res.json({message:'logged student',user:responsedata})
+    if(user.typeUser==='1')
+    {
+      responsedata=await Enseignant.findById(user.enseignantId)
+      role='1';
+
+    }
+    if(user.typeUser==='2')
+    {     
+      role='2';
+      responsedata=user
+    }
+
+    res.json({message:'logged in',user:responsedata,role:role})
 }
 
 

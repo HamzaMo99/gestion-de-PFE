@@ -65,7 +65,7 @@ export default function Liste({
                       
                         <td> <Link  to={ "/chefdept/"+x._id} exact="true" >{x.description} </Link>  </td>
                         <td > <Link  to={"/chefdept/"+x._id} >{x.dateDebut} </Link> </td>
-                        <td><a href={pdf}> <i class="far fa-file-pdf" style={{fontSize:"32px",color:"red"}}></i>  </a> </td>
+                        <td><a href={pdf}> <i className="far fa-file-pdf" style={{fontSize:"32px",color:"red"}}></i>  </a> </td>
                       
                         <td ><Link  to={"/chefdept/"+x._id } > {x.etudiants.map(e=>{return (<div key={e._id}> {e.nom+" " +e.prenom} </div> )})} </Link></td>
                         <td  className="buttons"> 

@@ -47,9 +47,23 @@ function SignIn(props) {
              setShow(true);
              }
             else{
+                const role =responseData.role
+
+                console.log(responseData)
+
                 props.onLoginSucceed(responseData.user._id,responseData.user)
-                console.log(responseData.user)
-                props.history.push('/student');
+              
+                if(role==='0'){
+                    props.history.push('/student');
+                }
+                if(role==='1'){
+                    props.history.push('/enseignant');
+                }
+
+                if(role==='2'){
+                    props.history.push('/chefdept');
+                }
+                
             }
 
             
@@ -58,6 +72,9 @@ function SignIn(props) {
             
         
         } catch (error) {
+
+            console.log(error);
+            
             
         }
     }
