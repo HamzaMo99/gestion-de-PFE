@@ -291,7 +291,40 @@ const deleteStage = async (req, res, next) => {
 
 };
 
+
+
+// get stage info
+
+const getStageInfo = async (req, res, next) => {
+  console.log("hello")
+
+  const stageId = req.params.pid;
+  console.log(stageId);
+
+  let etudiants, stage;
+
+  try {
+    stage = await Stage.findById(stageId);
+  } catch (error) {
+    const er = new HttpError("finding stage failed, please try again.", 500);
+    return next(er);
+  }
+
+  try {
+    etudiants = await Etudiant.find({_id:stage.etudiants});
+  } catch (error) {
+    const er = new HttpError("finding stage failed, please try again.", 500);
+    return next(er);
+  }
+
+  res.status(201).json({ stageInfo: stage,students:etudiants });
+
+
+
+}
+
 exports.newStage = newStage;
 exports.getStages = getStages;
 exports.validerStage = validerStage;
 exports.deleteStage = deleteStage;
+exports.getStageInfo = getStageInfo;

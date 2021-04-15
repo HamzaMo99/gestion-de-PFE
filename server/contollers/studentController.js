@@ -10,7 +10,7 @@ const getstudents = async (req,res,next) =>{
 
     let students
     try {
-        students = await Etudiant.find({},['nom','prenom','_id'])
+        students = await Etudiant.find({},[])
     } catch (error) {
       const err = new HttpError(
         'getting students failed',

@@ -1,4 +1,5 @@
 const express = require('express');
+const stagesController = require('../contollers/stagesController')
 const stageController = require('../contollers/stageController')
 const router =express.Router();
 const { check } = require('express-validator');
@@ -17,5 +18,7 @@ router.post('/newstage',
  router.get('/',stageController.getStages)
  router.post('/valider',stageController.validerStage)
  router.delete('/delete',stageController.deleteStage)
+ 
+ router.get('/stageInfo/:pid',stageController.getStageInfo)
 
 module.exports = router;

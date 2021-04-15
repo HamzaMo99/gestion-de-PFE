@@ -30,11 +30,11 @@ app.use('/api/enseignant', enseignantRoutes);
 
 app.use('/api/students', studentsRoutes);
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);
   throw error;
 });
-
+ */
 
 app.use((error, req, res, next) => {
 
@@ -45,9 +45,11 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
 
+//'mongodb://'+process.env.DB_USER +':'+process.env.DB_PASSWORD +'@cluster0-shard-00-00.16mk3.mongodb.net:27017,cluster0-shard-00-01.16mk3.mongodb.net:27017,cluster0-shard-00-02.16mk3.mongodb.net:27017/'+process.env.DB_NAME +'?ssl=true&replicaSet=atlas-8xtjxf-shard-0&authSource=admin&retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
 mongoose.connect('mongodb://'+process.env.DB_USER +':'+process.env.DB_PASSWORD +'@cluster0-shard-00-00.16mk3.mongodb.net:27017,cluster0-shard-00-01.16mk3.mongodb.net:27017,cluster0-shard-00-02.16mk3.mongodb.net:27017/'+process.env.DB_NAME +'?ssl=true&replicaSet=atlas-8xtjxf-shard-0&authSource=admin&retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
 .then(()=>{
     app.listen(process.env.PORT || 5000);
 }).catch( err =>{
     console.log(err)
 })
+

@@ -67,30 +67,6 @@ async function validHandler(e){
           
       }
 
-
-  // axios({
-  //   method: 'POST',
-  //   url:'http://localhost:5000/api/stages/valider',
-  //   headers: {
-  //    'Content-Type' : 'application/json',
-  //    'Accept' : 'application/json',
-  //    'Authorization' : 'Bearer <token_here>'
-  //   }, 
-  //   data: {
-  //     stageId:e.target.value ,
-  //   }
- 
-  //  })
-  //  .then(function (response) {
-    
-  //    // setStages(response.data.stages)
-  //    // setLoaded(true)
-  //    setError(response.data.message)
-  //    setShow(true);
-  //  })
-  //  .catch(function (error) {
-    
-  //  })
  }
 
 
@@ -124,27 +100,6 @@ async function validHandler(e){
             setShow(true);
           
       }
-
-  // axios({
-  //  method: 'DELETE',
-  //  url:'http://localhost:5000/api/stages/delete',
-  //  headers: {
-  //   'Content-Type' : 'application/json',
-  //   'Accept' : 'application/json',
-  //   'Authorization' : 'Bearer <token_here>'
-  //  }, 
-  //  data: {
-  //    stageId:e.target.value ,
-  //  }
-
-  // })
-  // .then(function (response) {
-  //   setError(response.data.message)
-  //   setShow(true);
-  // })
-  // .catch(function (error) {
-   
-  // })
 }
 
 

@@ -16,7 +16,9 @@ const stageSchema =new Schema(
      signatureDept : {type:String,default:'0' },
      signatureDirect : {type:String,default:'0' },
      enseignants:[{  type: mongoose.Types.ObjectId , ref:'Enseignant' }],
-     etudiants:[{  type: mongoose.Types.ObjectId, ref:'Etudiant' }]
+     etudiants:[{  type: mongoose.Types.ObjectId, ref:'Etudiant' }],
+     docs:[{  type: mongoose.Types.ObjectId, ref:'DocAdmin' }]
+
 
 
 }

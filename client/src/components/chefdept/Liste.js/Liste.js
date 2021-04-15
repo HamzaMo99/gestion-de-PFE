@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import {Link} from 'react-router-dom'
 import React, { useState, useEffect } from "react";
+import pdf from '../../../assets/ELFaddouli_Gestion des PFE.pdf'
 export default function Liste({
   data,
   deleteHandler,
@@ -44,9 +45,11 @@ export default function Liste({
         <Table bordered hover >
         <thead className="tableHead">
           <tr>
-            <th>Date de soumission</th>
             <th>Sujet</th>
+            <th>Date de soumission</th>
+            <th>pdf</th>
             <th>Etudiants</th>
+            
             <th>Action</th>
           </tr>
         </thead>
@@ -60,9 +63,11 @@ export default function Liste({
                 return(
                     <tr key={x._id}> 
                       
-                        <td> <Link  to="/chefdept/1" exact="true" >{x.description} </Link>  </td>
-                        <td > <Link  to="/chefdept/2" >{x.dateDebut} </Link> </td>
-                        <td ><Link  to="/chefdept/3"  > {x.etudiants.map(e=>{return (<div key={e._id}> {e.nom+" " +e.prenom} </div> )})} </Link></td>
+                        <td> <Link  to={ "/chefdept/"+x._id} exact="true" >{x.description} </Link>  </td>
+                        <td > <Link  to={"/chefdept/"+x._id} >{x.dateDebut} </Link> </td>
+                        <td><a href={pdf}> <i class="far fa-file-pdf" style={{fontSize:"32px",color:"red"}}></i>  </a> </td>
+                      
+                        <td ><Link  to={"/chefdept/"+x._id } > {x.etudiants.map(e=>{return (<div key={e._id}> {e.nom+" " +e.prenom} </div> )})} </Link></td>
                         <td  className="buttons"> 
                             
                              <Button  onClick={validHandler} type="submit" value={x._id} className="mr-1" variant="success">{ x.signatureDept=="1" ? "invalider" : <i className="fas fa-check"></i> }</Button>

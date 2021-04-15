@@ -3,7 +3,8 @@ import Navbar from '../Navbar/Navbar'
 import SideBar from '../util/SideBar'
 import ListeStages from './ListeStages'
 import {BrowserRouter as Router,Route,Switch} from  'react-router-dom'
-import '../student/student.css'
+import '../student/student.css';
+import InfoStage from './infoStage/InfoStage'
 
 
 
@@ -31,11 +32,8 @@ function ChefDept(){
 
         <Router>
              <Switch>
-                 <Route path="/chefdept/1">
-                        <div>11111</div>
-                 </Route>
-                 <Route path="/chefdept/2">
-                        <div>222222</div>
+                 <Route path="/chefdept/:stageId">
+                        <InfoStage/>
                  </Route>
 
                  <Route path="/chefdept" >
