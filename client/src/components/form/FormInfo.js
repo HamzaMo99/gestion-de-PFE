@@ -8,6 +8,7 @@ import axios from 'axios'
 import MultiSelect from "react-multi-select-component";
 import ErrorModal from '../modals/ErrorModal';
 import Select from 'react-select';
+import FileUpload from '../util/fileUpload/FileUpload';
 
 
 
@@ -171,7 +172,7 @@ const FormInfo = (props) => {
 
 
       
-    
+       <FileUpload/>
     <Form style={formStyle}>
 
     

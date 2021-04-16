@@ -5,6 +5,8 @@ import {BrowserRouter as Router,Route,Switch,Redirect} from  'react-router-dom'
 import Student from './components/student/Student'
 import ChefDept from './components/chefdept/ChefDept'
 import { connect } from "react-redux";
+import CommentStage from "./components/enseignant/Commentaire/CommentStage";
+import Stagedetails from './components/enseignant/stages/StageDetails';
 
 function App(props) {
   return (
@@ -20,6 +22,12 @@ function App(props) {
 
                   <Route exact path="/student">
                   {props.isLoged ?  <Student/> : <Redirect to="/" /> }
+                </Route>
+                <Route path = '/enseignant/details'>
+                  <Stagedetails/>
+                </Route>
+                <Route path = '/enseignant/commenterstage'>
+                  <CommentStage/>
                 </Route>
                 <Route path='/chefdept'>
                   <ChefDept/> 
