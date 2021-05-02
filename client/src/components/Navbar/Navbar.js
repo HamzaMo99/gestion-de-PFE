@@ -2,6 +2,7 @@ import React from 'react';
  import './navbar.css'
 import { NavLink } from 'react-router-dom';
 import mainLogo from'../../assets/images/logo1.png';
+import {BrowserRouter as Router} from  'react-router-dom'
 function Navbar(){
 
 
@@ -9,6 +10,7 @@ function Navbar(){
 
     return (
         <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light " id='mainNav'>
+        <Router>
         <NavLink className="navbar-brand" to="/"> <img src={mainLogo} width="70" height="40" alt="" ></img> Gestion de PFE</NavLink>
         <button className="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             
@@ -31,13 +33,11 @@ function Navbar(){
                 <li className="nav-item">
                       <NavLink  className="nav-link" to="#"   exact activeClassName="selectedOption avatar "   > <img src="http://placehold.it/64x64"  width='33' height='33' className="float-left userImage rounded-circle"></img>   Hamza Moukrim</NavLink>
                 </li>
-                
-
-
 
             </ul>
 
         </div>
+        </Router>
       </nav>
     )
 }

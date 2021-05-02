@@ -49,12 +49,14 @@ function SignIn(props) {
             else{
                 const role =responseData.role
 
-                console.log(responseData)
+                
 
-                props.onLoginSucceed(responseData.user._id,responseData.user)
+                props.onLoginSucceed(responseData.userId,responseData.user)
+               
               
                 if(role==='0'){
                     props.history.push('/student');
+                    
                 }
                 if(role==='1'){
                     props.history.push('/enseignant');

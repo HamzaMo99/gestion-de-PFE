@@ -122,6 +122,7 @@ async function validHandler(e){
 
       { loaded ?
             <Liste
+          
             data={stages}
             pageLimit={3}
             dataLimit={10}

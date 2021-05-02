@@ -20,7 +20,8 @@ function App(props) {
                 <Route path='/' component={SignIn} exact ></Route>
 
 
-                  <Route exact path="/student">
+    
+                  <Route path="/student">
                   {props.isLoged ?  <Student/> : <Redirect to="/" /> }
                 </Route>
                 <Route path = '/enseignant/details'>
@@ -29,8 +30,11 @@ function App(props) {
                 <Route path = '/enseignant/commenterstage'>
                   <CommentStage/>
                 </Route>
+
                 <Route path='/chefdept'>
-                  <ChefDept/> 
+
+                  {props.isLoged ?  <ChefDept/> : <Redirect to="/" /> }
+
                 </Route>
           </Switch>
   

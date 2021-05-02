@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Etudiant =require('../models/etudiant')
 const Filiere =require('../models/filiere')
 const Enseignant = require('../models/enseignant')
+const Stage = require("../models/stage");
 
 
 // Login 
@@ -32,13 +33,25 @@ const login = async (req,res,next) =>{
         return next(err)
     }
     
-    let responsedata,role;
+    let responsedata,role,stageInfo;
     if(user.typeUser==='0')
     {
       responsedata=await Etudiant.findById(user.studentId)
       filiere = await Filiere.findById(responsedata.filiere)
       responsedata.filiere = filiere;
       role='0';
+      if(responsedata.stageId !=null){
+        console.log("helloo")
+
+       try {
+        stageInfo = await Stage.findById(responsedata.stageId)
+        responsedata.set('stage',stageInfo,{strict:false});
+        console.log(responsedata)
+       } catch (error) {
+         console.log(error)
+       }
+        
+      }
 
     }
 
@@ -54,7 +67,7 @@ const login = async (req,res,next) =>{
       responsedata=user
     }
 
-    res.json({message:'logged in',user:responsedata,role:role})
+    res.json({message:'logged in',user:responsedata,role:role,userId:user._id})
 }
 
 

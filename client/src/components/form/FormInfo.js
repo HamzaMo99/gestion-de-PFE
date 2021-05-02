@@ -13,17 +13,19 @@ import FileUpload from '../util/fileUpload/FileUpload';
 
 
 const FormInfo = (props) => {
+  
+
 
     const [startDate, setStartDate] = useState(new Date());
     const [finDate, setFinDate] = useState(new Date());
-    const [email,setEmail] = useState('')
-    const [tel,setTel] = useState('');
-    const [organisme,setOrganisme] = useState('');
-    const [rep,setRep] = useState('');
-    const [encExterne,setEncExterne] = useState('');
-    const [description,setDescription] = useState('');
-    const [ville,setVille] = useState('')
-    const [pays,setPays] = useState('')
+    const [email,setEmail] = useState(props.userInfo.stageId !=null ? props.userInfo.email : '')
+    const [tel,setTel] = useState(props.userInfo.stageId !=null ? props.userInfo.tel : '');
+    const [organisme,setOrganisme] = useState(props.userInfo.stageId !=null ? props.userInfo.stage.organismeAceuil : '');
+    const [rep,setRep] = useState(props.userInfo.stageId !=null ? props.userInfo.stage.posteRepresentant : '');
+    const [encExterne,setEncExterne] = useState(props.userInfo.stageId !=null ? props.userInfo.stage.encadrantExterne : '');
+    const [description,setDescription] = useState(props.userInfo.stageId !=null ? props.userInfo.stage.description : '');
+    const [ville,setVille] = useState(props.userInfo.stageId !=null ? props.userInfo.stage.villeStage : '')
+    const [pays,setPays] = useState(props.userInfo.stageId !=null ? props.userInfo.stage.paysStage : '')
     const [selectedProfs, setSelectedProfs] = useState([]);
 
     const [options,setOptions] = useState([]);
@@ -35,6 +37,19 @@ const FormInfo = (props) => {
 
     const [students, setstudents] = useState([])
 
+    const [file, setFile] = useState('');
+  
+
+
+
+    const [selectedBinome,setSelectedBinome] = useState('')
+    const [enBinome, setenBinome] = useState(false)
+     const handleChange = selectedBinome => {
+       setSelectedBinome(selectedBinome);
+       
+     };
+   
+   
 
 
 
@@ -88,36 +103,44 @@ const FormInfo = (props) => {
 
     const submitStage = async event => {
       event.preventDefault();
+      const formData = new FormData();
+      formData.append('file', file);
+
       let profs=[];
        selectedProfs.map(x=>{
         profs.push(x.value)
        })
 
       try {
+        console.log(props.userInfo._id)
+
+          let formData = new FormData()
+          formData.append('email',email)
+          formData.append('tel',tel)
+          formData.append('organisme',organisme)
+          formData.append('rep',rep)
+          formData.append('encExterne',encExterne)
+        //   profs.forEach((item) => {
+        //     formData.append('selectedProfs', item)
+        //  })
+           formData.append('selectedProfs',JSON.stringify(profs))
+          formData.append('pays',pays)
+          formData.append('ville',ville)
+          formData.append('startDate',startDate.toISOString().substring(0, 10))
+          formData.append('finDate',finDate.toISOString().substring(0, 10))
+          formData.append('userId',props.userInfo._id)
+          formData.append('binome',enBinome ? selectedBinome.value : '')
+          formData.append('description',description);
+          formData.append('file', file);
+          
+        
           const response = await fetch('http://localhost:5000/api/stages/newstage',
           {
               method:'Post',
               headers:{
-                  'Content-Type' : 'application/json',
-                  'Accept' : 'application/json'
               
               },
-              body:JSON.stringify({
-                  email:email,
-                  tel:tel,
-                  organisme:organisme,
-                  rep:rep,
-                  encExterne:encExterne,
-                  description:description,
-                  ville:ville,
-                  pays:pays,
-                  selectedProfs:profs,
-                  startDate:startDate.toISOString().substring(0, 10),
-                  finDate:finDate.toISOString().substring(0, 10),
-                  userId:props.userId,
-                  binome: enBinome ? selectedBinome.value : ''
-
-              })
+              body:formData
           });
 
 
@@ -139,11 +162,7 @@ const FormInfo = (props) => {
   }
 
 
-   
 
-
-    
-   
 
 
   const formStyle = {
@@ -159,20 +178,11 @@ const FormInfo = (props) => {
     height: "50px",
   };
 
-  const [selectedBinome,setSelectedBinome] = useState('')
- const [enBinome, setenBinome] = useState(false)
-  const handleChange = selectedBinome => {
-    setSelectedBinome(selectedBinome);
-    console.log(`Option selected:`, selectedBinome.value);
-  };
-
   return (
     <React.Fragment>
        <ErrorModal show={show} setShow={setShow} error={error} titre='' />
 
 
-      
-       <FileUpload/>
     <Form style={formStyle}>
 
     
@@ -319,8 +329,9 @@ const FormInfo = (props) => {
             id="formEmail"
             label="Email"
             type="email"
-            placeHolder="test@gmail.com"
+             placeHolder="test@gmail.com"
             className="text-muted"
+            value={email}
             inputValue={email}
             setInput={setEmail}
           />
@@ -351,6 +362,7 @@ const FormInfo = (props) => {
             placeHolder="0652485514"
             className="text-muted"
             text=""
+            value={tel}
             inputValue={tel}
             setInput={setTel}
           />
@@ -363,6 +375,7 @@ const FormInfo = (props) => {
             type="text"
             placeHolder="emi"
             className="text-muted"
+            value={organisme}
             inputValue={organisme}
             setInput={setOrganisme}
           />
@@ -378,6 +391,7 @@ const FormInfo = (props) => {
             type="text"
             placeHolder="Chef de Projet Senior SI"
             className="text-muted"
+            value={rep}
             inputValue={rep}
             setInput={setRep}
           />
@@ -390,6 +404,7 @@ const FormInfo = (props) => {
             type="text"
             placeHolder=""
             className="text-muted"
+            value={encExterne}
             inputValue={encExterne}
             setInput={setEncExterne}
           />
@@ -418,6 +433,7 @@ const FormInfo = (props) => {
             type="text"
             placeHolder="..."
             className="text-muted"
+            value={description}
             inputValue={description}
             setInput={setDescription}
           />
@@ -452,6 +468,7 @@ const FormInfo = (props) => {
             type="text"
             placeHolder="Rabat"
             className="text-muted"
+            value={ville}
             inputValue={ville}
             setInput={setVille}
           />
@@ -465,14 +482,19 @@ const FormInfo = (props) => {
             type="text"
             placeHolder="Maroc"
             className="text-muted"
+            value={pays}
             inputValue={pays}
             setInput={setPays}
           />
         </div>
-      </div>
+       </div>
+
+        <div className="col-lg-6"> 
+        <FileUpload setFile={setFile} />
+        </div>
 
       <Button variant="primary" type="submit" style={submitButtonStyle} onClick={submitStage} >
-        Submit
+       Enregistrer
         
       </Button>
     </Form>

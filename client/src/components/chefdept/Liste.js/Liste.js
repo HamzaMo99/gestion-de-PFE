@@ -6,12 +6,13 @@ import Table from "react-bootstrap/Table";
 import {Link} from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import pdf from '../../../assets/ELFaddouli_Gestion des PFE.pdf'
+import { NavLink } from 'react-router-dom';
 export default function Liste({
   data,
   deleteHandler,
   validHandler,
   pageLimit,
-  dataLimit
+  dataLimit,
 }) {
   const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,6 +41,11 @@ export default function Liste({
     return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
      
      }
+
+    
+     
+
+
     return (
         <div>
         <Table bordered hover >
@@ -65,14 +71,16 @@ export default function Liste({
                       
                         <td> <Link  to={ "/chefdept/"+x._id} exact="true" >{x.description} </Link>  </td>
                         <td > <Link  to={"/chefdept/"+x._id} >{x.dateDebut} </Link> </td>
-                        <td><a href={pdf}> <i className="far fa-file-pdf" style={{fontSize:"32px",color:"red"}}></i>  </a> </td>
+                        <td><a href={"http://localhost:5000/"+x.docs[0].url}> <i className="far fa-file-pdf" style={{fontSize:"32px",color:"red"}}></i>  </a> </td>
                       
                         <td ><Link  to={"/chefdept/"+x._id } > {x.etudiants.map(e=>{return (<div key={e._id}> {e.nom+" " +e.prenom} </div> )})} </Link></td>
-                        <td  className="buttons"> 
+                        <td  className=""> 
                             
-                             <Button  onClick={validHandler} type="submit" value={x._id} className="mr-1" variant="success">{ x.signatureDept=="1" ? "invalider" : <i className="fas fa-check"></i> }</Button>
-                             <Button   onClick={deleteHandler} type="submit"  value={x._id} variant="danger"><i className="far fa-trash-alt"></i></Button>
-                            </td>
+                             <button  onClick={validHandler} value={x._id} className="mr-1 mb-1 btn btn-link d-block border-0 text-decoration-none">{ x.signatureDept=="1" ? "invalider" : "Valider" }</button>
+                             <button   onClick={deleteHandler}  value={x._id}  className="d-block btn btn-link border-0 text-decoration-none ">Supprimer</button> 
+                            <NavLink className="d-block text-decoration-none btn-link" to={"/chefdept/conversation/"+x.etudiants[0].cin}  exact   >Envoyer une remarque</NavLink>
+   
+                        </td>
                    </tr>)
             })
 

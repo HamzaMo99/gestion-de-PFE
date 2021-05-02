@@ -1,18 +1,17 @@
-import React from "react"
+import React,{useState} from "react"
 import Navbar from '../Navbar/Navbar'
 import SideBar from '../util/SideBar'
 import ListeStages from './ListeStages'
 import {BrowserRouter as Router,Route,Switch} from  'react-router-dom'
 import '../student/student.css';
 import InfoStage from './infoStage/InfoStage'
-
+import Conversation from '../util/conversation/Conversation'
 
 
 function ChefDept(){
 
 
     const menu=[{menu:"Liste des stages",icon:"fas fa-list",to:"/"},{menu:"Planning PFE",icon:"fas fa-calendar-alt",to:"/chefDept/planning"}]
-
 
 
 
@@ -32,18 +31,20 @@ function ChefDept(){
 
         <Router>
              <Switch>
+
+                <Route path="/chefdept/conversation/:to">
+                        
+                       <Conversation/>
+                            
+                </Route>
+
                  <Route path="/chefdept/:stageId">
                         <InfoStage/>
                  </Route>
 
                  <Route path="/chefdept" >
-                 <ListeStages/>
+                 <ListeStages />
                  </Route>
-
-
-
-       
-
         </Switch>
 
         </Router>

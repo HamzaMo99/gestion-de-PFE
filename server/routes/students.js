@@ -7,4 +7,7 @@ const { check } = require('express-validator');
 router.get('/',
  studentController.getstudents)
 
+ router.get('/:id',
+ studentController.getUser)
+
 module.exports = router;
