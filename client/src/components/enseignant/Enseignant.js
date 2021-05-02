@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import SideBar from "./util/SideBar"
 import Stageform  from "./stages/StageForm"
 import "./Enseignant.css";
+import Homepage from "./stages/Homepage";
 
 
 function Enseignant (){
@@ -16,7 +17,7 @@ function Enseignant (){
                         <SideBar/>
                     </div>
                     <div className="col-sm-10 mb-0 soumission jumbotron">
-                    <Stageform/>
+                    <Homepage/>
                     </div>
             </div>
         </div>
