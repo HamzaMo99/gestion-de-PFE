@@ -2,20 +2,18 @@ import React,{useEffect,useState} from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import {Link} from 'react-router-dom'
-import Search from "../../util/search/search"
+import Search from "../../../util/search/search"
 import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner'
-import '../../chefdept/chefdept.css'
-import ErrorModal from '../../modals/ErrorModal';
-import Liste from '../../chefdept/Liste.js/Liste'
-import {connect} from 'react-redux';
-import * as actionTypes from '../../store/reducers/actions' ;
+import '../../../chefdept/chefdept.css'
+import ErrorModal from '../../../modals/ErrorModal';
+import Liste from './Liste'
 
 
 
 
 
-function ListeStages(props) {
+function ListeStagesEns() {
    
   const [stages,setStages]=useState([]);
   const [loaded,setLoaded]=useState(false);
@@ -26,7 +24,7 @@ function ListeStages(props) {
 
 useEffect(() => {
 
-  axios.get(`http://localhost:5000/api/stages/${props.userId}`)
+  axios.get('http://localhost:5000/api/stages')
   .then(function (response) {
    
 
@@ -112,7 +110,7 @@ async function validHandler(e){
     <ErrorModal show={show} setShow={setShow} error={error} titre='' />
 
     <div className="container chefdept">
-      <div className="row header">Mes stages</div>
+      <div className="row header">Liste des Stages</div>
       <div className="row justify-content-end mb-5">
      <div className="col-sm-4">
      <Search/>
@@ -138,10 +136,4 @@ async function validHandler(e){
   );
 }
 
-const mapStateToProps = state =>{
-  return {
-    userId: state.userId,
-  }
-};
-export default connect(mapStateToProps, null)(ListeStages);  
-
+export default ListeStagesEns;

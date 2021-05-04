@@ -73,7 +73,6 @@ app.use('/api/planning', planningRoutes);
 
 app.use('/api/students', studentsRoutes);
 
-
 // app.use((error, req, res, next) => {
 
 //   if (res.headerSent) {

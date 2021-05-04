@@ -47,10 +47,37 @@ function Student() {
                         </Switch>
 
                     </div>
+<<<<<<< HEAD
                 </Router>
 
             </div>
 
+=======
+                   <div className="col-sm-10 mb-0 soumission jumbotron">
+                <Switch>
+                     
+                     <Route path="/student/conversation" > 
+                        <Conversations role = {"student"}/>     
+                        {/* <h1>hello</h1>   */}
+                           
+                        </Route>
+                        
+                       <Route path="/student/soumission" >
+                           <Soumission />  
+                        </Route>
+
+                        <Route path="/student" > 
+                        <Home/>       
+                           
+                        </Route>
+               </Switch>
+
+               </div> 
+           </Router>
+
+ </div>                           
+                   
+>>>>>>> 6b196562be6357ce7a431901f02b73d10222b3f0
 
 
 

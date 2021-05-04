@@ -6,7 +6,6 @@ import Student from './components/student/Student'
 import ChefDept from './components/chefdept/ChefDept'
 import { connect } from "react-redux";
 import CommentStage from "./components/enseignant/Commentaire/CommentStage";
-import Stagedetails from './components/enseignant/stages/StageDetails';
 import Enseignant from './components/enseignant/Enseignant';
 
 function App(props) {
@@ -22,24 +21,12 @@ function App(props) {
 
 
     
-                  <Route path="/student">
+                <Route path="/student">
                         {props.isLoged ?  <Student/> : <Redirect to="/" /> }
                 </Route>
 
                 <Route exact path= '/enseignant'>
-                  <Enseignant/>
-                </Route>
-
-                <Route path = '/enseignant/details'>
-                  <Stagedetails/>
-                </Route>
-
-                <Route path = '/enseignant/commenterstage'>
-                  <CommentStage/>
-                </Route>
-
-                <Route path = "enseignant/stages/mes-Stages">
-                   <div> test mes stages</div>
+                      {props.isLoged ?  <Enseignant/> : <Redirect to="/" /> } 
                 </Route>
 
                 <Route path='/chefdept'>

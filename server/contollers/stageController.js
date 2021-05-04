@@ -92,11 +92,27 @@ const getEnseigantStages = async (req, res, next) => {
   try {
     enseignant = await Enseignant.findById(userEns.enseignantId).populate('stages');
     
-  enseignant.stages.map(stage =>{
-    console.log(stage.studiants);
-  })
-                                  
-  } catch (err) {
+    
+//    enseignant.stages.map(async(stage, index )=>{
+     
+//     //  stage.etudiants.map(async(etudiant,i)=>{
+//        let s =  await Etudiant.find({ _id: stage.etudiants }, [
+//             "nom",
+//             "prenom",
+//           ]);
+//        console.log(s);
+//     enseignant.stages[index].etudiants = s;
+//     //console.log(enseignant.stages[index].etudiants[i]) 
+// });
+
+    for (var i = 0; i <  enseignant.stages.length; i++) {
+      etudiants = await Etudiant.find({ _id: enseignant.stages[i].etudiants }, [
+        "nom",
+        "prenom",
+      ]);
+      enseignant.stages[i].etudiants = etudiants;
+    }
+}catch(err) {
     console.log(err)
     const error = new HttpError(
       "Fetching stages failed, please try again later.",
@@ -104,8 +120,9 @@ const getEnseigantStages = async (req, res, next) => {
     );
     return next(error);
   }
-
-  res.send(enseignant);
+  console.log(enseignant);
+  //res.send(enseignant);
+  res.status(201).json({ stages: enseignant.stages });
 
   // let docPFE;
 
@@ -143,7 +160,7 @@ const getEnseigantStages = async (req, res, next) => {
   // }
 
 
-  // res.status(201).json({ stages: stages });
+  //res.status(201).json({ stages: stages });
 };
 
 
