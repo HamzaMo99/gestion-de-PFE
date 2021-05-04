@@ -72,7 +72,6 @@ app.use('/api/enseignant', enseignantRoutes);
 
 app.use('/api/students', studentsRoutes);
 
-
 // app.use((error, req, res, next) => {
 
 //   if (res.headerSent) {

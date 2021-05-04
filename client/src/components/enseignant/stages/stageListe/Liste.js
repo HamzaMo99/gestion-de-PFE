@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import {Link} from 'react-router-dom'
 import React, { useState, useEffect } from "react";
-import pdf from '../../../assets/ELFaddouli_Gestion des PFE.pdf'
 import { NavLink } from 'react-router-dom';
 export default function Liste({
   data,
@@ -86,7 +85,7 @@ export default function Liste({
                             
                              <button  onClick={validHandler} value={x._id} className="mr-1 mb-1 btn btn-link d-block border-0 text-decoration-none">{ x.signatureDept=="1" ? "invalider" : "Valider" }</button>
                              <button   onClick={deleteHandler}  value={x._id}  className="d-block btn btn-link border-0 text-decoration-none ">Supprimer</button> 
-                            <NavLink className="d-block text-decoration-none btn-link" to={"/chefdept/conversation/"+x.etudiants[0].cin}  exact   >Envoyer une remarque</NavLink>
+                            <NavLink className="d-block text-decoration-none btn-link" to={"/enseignant/conversation/"+x.etudiants[0].cin}  exact   >Envoyer une remarque</NavLink>
    
                         </td>
                    </tr>)

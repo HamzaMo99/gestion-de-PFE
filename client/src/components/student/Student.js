@@ -35,10 +35,11 @@ function Student() {
                 <Switch>
                      
                      <Route path="/student/conversation" > 
-                        <Conversations/>     
+                        <Conversations role = {"student"}/>     
                         {/* <h1>hello</h1>   */}
                            
                         </Route>
+                        
                        <Route path="/student/soumission" >
                            <Soumission />  
                         </Route>

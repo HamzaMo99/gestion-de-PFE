@@ -4,7 +4,7 @@ import {Link } from 'react-router-dom';
 
 function Contact(props){
 return(
-    <Link to={"/student/conversation/"+props.id}>
+    <Link to={`/${props.role}/conversation/`+props.id}>
         <div className="chat_list active_chat">
         <div className="chat_people">
         <div className="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></img> </div>
