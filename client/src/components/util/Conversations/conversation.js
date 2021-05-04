@@ -56,7 +56,7 @@ function Conversations(props){
         { loaded?
           chatList.map(c => {
             return(
-            <Contact key={c.to._id} id={ c.user._id==props.userId ? c.to._id :  c.user._id } username={c.user._id==props.userId ? c.to.userName :  c.user.userName} to={c.chats[c.chats.length -1].time.toString()} lastMsg={c.chats[c.chats.length -1].message} />
+            <Contact  role = {props.role} key={c.to._id} id={ c.user._id==props.userId ? c.to._id :  c.user._id } username={c.user._id==props.userId ? c.to.userName :  c.user.userName} to={c.chats[c.chats.length -1].time.toString()} lastMsg={c.chats[c.chats.length -1].message} />
           )}) : ''
         }
          
@@ -87,11 +87,11 @@ function Conversations(props){
           <div className="msg_history">
 
             <Switch>
-              <Route path='/student/conversation/:to'>
+              <Route path={'/'+props.role+'/conversation/:to'}>
 
               <Conversation/>
               </Route>
-              <Route path='/student/conversation'>
+              <Route path={'/'+props.role+'/conversation'}>
               
               </Route>
 
@@ -120,4 +120,4 @@ const mapStateToProps = state =>{
 }
 
 
-export default connect(mapStateToProps,null)(Conversations);  
+export default connect(mapStateToProps,null)(Conversations);

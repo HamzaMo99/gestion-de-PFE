@@ -6,12 +6,13 @@ import {BrowserRouter as Router,Route,Switch} from  'react-router-dom'
 import '../student/student.css';
 import InfoStage from './infoStage/InfoStage'
 import Conversation from '../util/conversation/Conversation'
-
+import Planning from './planning/Planning';
+import NewPlanning from './planning/newPlanning/NewPlanning';
 
 function ChefDept(){
 
 
-    const menu=[{menu:"Liste des stages",icon:"fas fa-list",to:"/"},{menu:"Planning PFE",icon:"fas fa-calendar-alt",to:"/chefDept/planning"}]
+    const menu=[{menu:"Liste des stages",icon:"fas fa-list",to:"/"},{menu:"Planning PFE",icon:"fas fa-calendar-alt",to:"/chefdept/planning"}]
 
 
 
@@ -33,7 +34,12 @@ function ChefDept(){
                 
         <div className="col-sm-10 mb-0 soumission jumbotron">
              <Switch>
-
+             <Route path="/chefdept/planning" >
+                    <Planning />
+                 </Route>
+                 <Route path="/chefdept/newPlanning" >
+                    <NewPlanning />
+                 </Route>
                 <Route path="/chefdept/conversation/:to">
                         
                        <Conversation/>
