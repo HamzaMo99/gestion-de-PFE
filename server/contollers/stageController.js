@@ -65,6 +65,94 @@ const getStages = async (req, res, next) => {
   res.status(201).json({ stages: stages });
 };
 
+// get enseiganant stages 
+//---------------------------------------------------------------------------------------
+const getEnseigantStages = async (req, res, next) => {
+
+  const userId = req.params.userId;
+  console.log(userId);
+
+  let userEns ;
+  try {
+     userEns = await User.findById(userId);
+  } catch (err) {
+    console.log(err)
+    const error = new HttpError(
+      "Fetching stages failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+
+
+
+
+ let enseignant;
+
+  try {
+    enseignant = await Enseignant.findById(userEns.enseignantId).populate('stages');
+    
+  enseignant.stages.map(stage =>{
+    console.log(stage.studiants);
+  })
+                                  
+  } catch (err) {
+    console.log(err)
+    const error = new HttpError(
+      "Fetching stages failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+
+  res.send(enseignant);
+
+  // let docPFE;
+
+  // try {
+  //   for (var i = 0; i < stages.length; i++) {
+  //     user = await User.find({ studentId: stages[i].etudiants }
+  //     //    [
+  //     //   // "nom",
+  //     //   // "prenom",
+  //     // ]
+  //     );
+
+  //   user.map((e,index)=>{
+  //     stages[i].etudiants[index].cin = e._id;
+
+  //   })
+
+      
+  //   }
+  // } catch (er) {
+  //   console.log(err)
+  //   const error = new HttpError(
+  //     "finding students failed, please try again",
+  //     500
+  //   );
+  //   return next(error);
+  // }
+
+
+  // for (var i = 0; i < stages.length; i++) {
+  //   docPFE = await  DocsAdmin.find({_id:stages[i].docs[0]}, [
+  //     "url",
+  //   ]);
+  //   stages[i].docs = docPFE;
+  // }
+
+
+  // res.status(201).json({ stages: stages });
+};
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------
 // add stage
 
 const newStage = async (req, res, next) => {
@@ -444,3 +532,4 @@ exports.getStages = getStages;
 exports.validerStage = validerStage;
 exports.deleteStage = deleteStage;
 exports.getStageInfo = getStageInfo;
+exports.getEnseigantStages = getEnseigantStages;

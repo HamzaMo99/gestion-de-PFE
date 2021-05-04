@@ -2,25 +2,23 @@ import React from "react";
 import "./sideBar.css";
 import { NavLink } from 'react-router-dom';
 
-function SideBar() {
+function SideBar(props) {
   return (
-    <div className="sidebar-container"> 
+    <div className="sidebar-container">
       <ul className="sidebar-navigation">
-        <li>
-          <NavLink to="/enseignant"  exact activeClassName="activeSideBar">
-            <i className="fa fa-home"  aria-hidden="true"  ></i> Homepage
-          </NavLink>
-        </li>
-        <li>
-          <a href="#">
-          <i className="fa fa-folder-open" aria-hidden="true"></i> Stages choisis
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i className="fa fa-info-circle" aria-hidden="true"></i> Information
-          </a>
-        </li>
+        {props.menu.map(x=>{
+          return (
+           
+            <li key={x.menu}>
+            <NavLink to={x.to}  exact activeClassName="activeSideBar">
+              <i className={x.icon}  ></i> {x.menu}
+            </NavLink>
+          </li>
+       
+          )
+        })}
+      
+        
       </ul>
     </div>
   );

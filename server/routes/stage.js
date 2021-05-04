@@ -16,6 +16,9 @@ router.post('/newstage',fileUpload.single('file'),
  stageController.newStage)
 
  router.get('/',stageController.getStages)
+ // add enseignant function stages to route
+ router.get('/:userId',stageController.getEnseigantStages);
+ //---------------------------------
  router.post('/valider',stageController.validerStage)
  router.delete('/delete',stageController.deleteStage)
  

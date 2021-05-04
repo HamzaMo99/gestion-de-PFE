@@ -16,7 +16,7 @@ function Soumission(){
            </div>
          
 
-          <FormInfo/>
+          <FormInfo/>   
             
         </div>
     )

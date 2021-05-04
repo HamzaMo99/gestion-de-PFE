@@ -26,7 +26,7 @@ function App(props) {
                         {props.isLoged ?  <Student/> : <Redirect to="/" /> }
                 </Route>
 
-                <Route path = '/enseignant'>
+                <Route exact path= '/enseignant'>
                   <Enseignant/>
                 </Route>
 
@@ -38,11 +38,15 @@ function App(props) {
                   <CommentStage/>
                 </Route>
 
-                <Route path='/chefdept'>
-
-                  {props.isLoged ?  <ChefDept/> : <Redirect to="/" /> }
-
+                <Route path = "enseignant/stages/mes-Stages">
+                   <div> test mes stages</div>
                 </Route>
+
+                <Route path='/chefdept'>
+                   {props.isLoged ?  <ChefDept/> : <Redirect to="/" /> }
+                </Route>
+
+              
           </Switch>
   
 

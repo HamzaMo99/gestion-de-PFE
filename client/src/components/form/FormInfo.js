@@ -65,8 +65,7 @@ const FormInfo = (props) => {
         response.data.students.map(x=>{
           t.push({value:x._id,label:x.nom +" " + x.prenom})
         })
-
-        setstudents(t)
+        setstudents(t);
         
       })
       .catch(function (error) {

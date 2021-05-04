@@ -23,13 +23,15 @@ function ChefDept(){
 
 
 <div className='row'>
-    <div className="col-sm-2 side_bar">
-        <SideBar menu={menu}/>
-
-    </div>
-    <div className="col-sm-10 mb-0 soumission jumbotron">
+   
+    
 
         <Router>
+            <div className="col-sm-2 side_bar">
+                <SideBar menu={menu}/>
+            </div>
+                
+        <div className="col-sm-10 mb-0 soumission jumbotron">
              <Switch>
 
                 <Route path="/chefdept/conversation/:to">
@@ -43,12 +45,13 @@ function ChefDept(){
                  </Route>
 
                  <Route path="/chefdept" >
-                 <ListeStages />
+                    <ListeStages />
                  </Route>
-        </Switch>
+             </Switch>
+        </div>
 
         </Router>
-    </div>
+   
 </div>
 
         </div>
