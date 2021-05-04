@@ -93,7 +93,7 @@ const NewPlanning = () => {
             .then(function (response) {
                 let t = [];
 
-
+/* test*/
                 response.data.enseignants.map(x => {
                     t.push({ value: x._id, label: x.nom + " " + x.prenom })
                 })
