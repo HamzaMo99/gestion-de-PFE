@@ -5,7 +5,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const usersRoutes = require('./routes/users')
 const stageRoutes =require('./routes/stage')
-
+const planningRoutes =require('./routes/planning')
 const conversationRoutes =require('./routes/conversationRoutes')
 const enseignantRoutes =require('./routes/enseignantRoutes')
 const studentsRoutes =require('./routes/students')
@@ -69,9 +69,9 @@ app.use('/api/users', usersRoutes);
 app.use('/api/stages', stageRoutes);
 app.use('/api/conversation',conversationRoutes);
 app.use('/api/enseignant', enseignantRoutes);
+app.use('/api/planning', planningRoutes);
 
 app.use('/api/students', studentsRoutes);
-
 
 // app.use((error, req, res, next) => {
 
@@ -103,6 +103,7 @@ app.use((error, req, res, next) => {
 
 
 //'mongodb://'+process.env.DB_USER +':'+process.env.DB_PASSWORD +'@cluster0-shard-00-00.16mk3.mongodb.net:27017,cluster0-shard-00-01.16mk3.mongodb.net:27017,cluster0-shard-00-02.16mk3.mongodb.net:27017/'+process.env.DB_NAME +'?ssl=true&replicaSet=atlas-8xtjxf-shard-0&authSource=admin&retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
+//mongodb://hamza:hamza@cluster0-shard-00-00.16mk3.mongodb.net:27017,cluster0-shard-00-01.16mk3.mongodb.net:27017,cluster0-shard-00-02.16mk3.mongodb.net:27017/PFE?ssl=true&replicaSet=atlas-8xtjxf-shard-0&authSource=admin&retryWrites=true&w=majority
 mongoose.connect('mongodb://'+process.env.DB_USER +':'+process.env.DB_PASSWORD +'@cluster0-shard-00-00.16mk3.mongodb.net:27017,cluster0-shard-00-01.16mk3.mongodb.net:27017,cluster0-shard-00-02.16mk3.mongodb.net:27017/'+process.env.DB_NAME +'?ssl=true&replicaSet=atlas-8xtjxf-shard-0&authSource=admin&retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
 .then(()=>{
     app.listen(process.env.PORT || 5000);

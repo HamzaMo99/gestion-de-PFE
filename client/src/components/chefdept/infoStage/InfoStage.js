@@ -38,13 +38,6 @@ const InfoStage = (props) => {
     const [error, setError] = useState("");
 
     const stageId= useParams().stageId;
-
-
-
-
-
-
-
     useEffect(() => {
         axios({
       url: 'http://localhost:5000/api/stages/stageInfo/'+stageId,
