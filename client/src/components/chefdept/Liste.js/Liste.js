@@ -48,6 +48,7 @@ export default function Liste({
 
     return (
         <div>
+         <div  className="content-table">
         <Table bordered hover >
         <thead className="tableHead">
           <tr>
@@ -104,6 +105,7 @@ export default function Liste({
         </tbody>
          
          </Table>
+         </div>
           <div className="pagination">
             {/* previous button */}
             <button

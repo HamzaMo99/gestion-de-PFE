@@ -39,7 +39,7 @@
   background-color: transparent;
   position: relative;
   display: inline-block;
-  width: 100%;
+  width: 15%;
   line-height: 20px;
 }
 
@@ -76,9 +76,9 @@
 }
 
 .activeSideBar{
-  /* background-color: #2574A9;
-  width: 100%;
-  color: #fff; */
+  background-color: #2574A9;
+  width: 16.66%;
+  color: #fff;
 }
 
 .sidebar-navigation li:hover::before {
@@ -90,6 +90,8 @@
 .content-container {
   padding-left: 50px;
 }
+
+
 
 
 
@@ -163,3 +165,17 @@
   .content-container {
     padding-left: 50px;
   } */
+
+
+
+
+
+
+
+
+
+
+
+  /*                side         */
+
+  

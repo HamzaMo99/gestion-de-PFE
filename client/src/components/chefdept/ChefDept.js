@@ -6,13 +6,19 @@ import {BrowserRouter as Router,Route,Switch} from  'react-router-dom'
 import '../student/student.css';
 import InfoStage from './infoStage/InfoStage'
 import Conversation from '../util/conversation/Conversation'
+import Conversations from '../util/Conversations/conversation'
 import Planning from './planning/Planning';
 import NewPlanning from './planning/newPlanning/NewPlanning';
+import Homepage from "../enseignant/stages/Homepage";
 
 function ChefDept(){
 
 
-    const menu=[{menu:"Liste des stages",icon:"fas fa-list",to:"/"},{menu:"Planning PFE",icon:"fas fa-calendar-alt",to:"/chefdept/planning"}]
+    const menu=[{menu:"Liste des stages",icon:"fas fa-list",to:"/chefdept/listestages"},
+               {menu:"Planning PFE",icon:"fas fa-calendar-alt",to:"/chefdept/planning"},
+               { menu: "Coversations", icon: "fas fa-comments-alt", to: "/chefdept/conversation" }
+            
+            ]
 
 
 
@@ -40,18 +46,28 @@ function ChefDept(){
                  <Route path="/chefdept/newPlanning" >
                     <NewPlanning />
                  </Route>
-                <Route path="/chefdept/conversation/:to">
+                 <Route path="/chefdept/conversation/:to">
                         
-                       <Conversation/>
+                        <Conversation/>
+                             
+                 </Route>
+                <Route path="/chefdept/conversation">
+                        
+                       <Conversations role={"chefdept"}/>
                             
                 </Route>
+
+                
+                <Route path="/chefdept/listestages">
+                        <ListeStages/>
+                 </Route>
 
                  <Route path="/chefdept/:stageId">
                         <InfoStage/>
                  </Route>
 
                  <Route path="/chefdept" >
-                    <ListeStages />
+                    <Homepage />
                  </Route>
              </Switch>
         </div>
