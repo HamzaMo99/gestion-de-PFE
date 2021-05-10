@@ -8,7 +8,7 @@ import InfoStage from './infoStage/InfoStage'
 import Conversation from '../util/conversation/Conversation'
 import Conversations from '../util/Conversations/conversation'
 import ListePlannings from './ListePlannings';
-// import NewPlanning from './planning/newPlanning/NewPlanning';
+ import NewPlanning from './newPlanning/NewPlanning';
 import Homepage from "../enseignant/stages/Homepage";
 
 function ChefDept(){
@@ -44,7 +44,7 @@ function ChefDept(){
                     <ListePlannings />
                  </Route>
                  <Route path="/chefdept/newPlanning" >
-                   {/*  <NewPlanning /> */}
+                 <NewPlanning />
                  </Route>
                  <Route path="/chefdept/conversation/:to">
                         
