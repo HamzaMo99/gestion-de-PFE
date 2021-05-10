@@ -42,7 +42,7 @@ const newplanning = async (req,res,next)=>{
     try {
 
       console.log(enseignant);
-      console.log(req.body)
+      console.log("body:"+req.body)
           const newPlanning = new Planning({
               jour:data.jour,
               heureDebut : data.heureDebut,
@@ -71,4 +71,24 @@ const newplanning = async (req,res,next)=>{
 
 }
 
+
+//get plannings
+
+const getPlannings = async (req, res, next) => {
+  let plannings;
+  try {
+    plannings = await Planning.find({}).populate('jury', "nom prenom").populate('stageId','description');
+    console.log("plannings"+plannings) ; 
+  } catch (err) {
+    console.log(err)
+    const error = new HttpError(
+      "Fetching plannings failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+  res.status(201).json({ plannings: plannings });
+};
+
 exports.newplanning = newplanning;
+exports.getPlannings = getPlannings;

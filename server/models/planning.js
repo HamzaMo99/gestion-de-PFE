@@ -16,4 +16,4 @@ const planningSchema =new Schema(
 )
 planningSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('Planning',planningSchema)
+module.exports = mongoose.model('Planning',planningSchema);

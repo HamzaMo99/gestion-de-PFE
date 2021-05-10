@@ -7,8 +7,8 @@ import '../student/student.css';
 import InfoStage from './infoStage/InfoStage'
 import Conversation from '../util/conversation/Conversation'
 import Conversations from '../util/Conversations/conversation'
-import Planning from './planning/Planning';
-import NewPlanning from './planning/newPlanning/NewPlanning';
+import ListePlannings from './ListePlannings';
+// import NewPlanning from './planning/newPlanning/NewPlanning';
 import Homepage from "../enseignant/stages/Homepage";
 
 function ChefDept(){
@@ -41,10 +41,10 @@ function ChefDept(){
         <div className="col-sm-10 mb-0 soumission jumbotron">
              <Switch>
              <Route path="/chefdept/planning" >
-                    <Planning />
+                    <ListePlannings />
                  </Route>
                  <Route path="/chefdept/newPlanning" >
-                    <NewPlanning />
+                   {/*  <NewPlanning /> */}
                  </Route>
                  <Route path="/chefdept/conversation/:to">
                         

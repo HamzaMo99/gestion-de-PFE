@@ -11,6 +11,6 @@ router.post('/newplanning',[
     check('salle').not().isEmpty(),
 ],planningController.newplanning) ;
 
-
+router.get('/',planningController.getPlannings),
 
 module.exports = router;

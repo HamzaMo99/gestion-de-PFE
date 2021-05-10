@@ -124,8 +124,8 @@ async function validHandler(e){
             <Liste
           
             data={stages}
-            pageLimit={3}
-            dataLimit={10}
+            pageLimit={2}
+            dataLimit={5}
             deleteHandler={deleteHandler}
             validHandler={validHandler}
              />
