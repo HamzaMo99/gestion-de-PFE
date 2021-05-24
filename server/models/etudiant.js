@@ -17,7 +17,6 @@ const EtudiantSchema =new Schema(
     matricule : {type:String,required:true },
     telephone : {type:String,required:true },
     filiere: {  type: mongoose.Types.ObjectId ,required:true, ref:'Filiere' } ,
-    option: {  type: mongoose.Types.ObjectId ,required:true, ref:'Option' } ,
     promotion: {type:String,required:true },
     image: {type:String },
     stageId:{  type: mongoose.Types.ObjectId, ref:'Stage' }

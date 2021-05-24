@@ -544,10 +544,6 @@ const getStageInfo = async (req, res, next) => {
 
 }
 
-
-
-
-
 exports.newStage = newStage;
 exports.getStages = getStages;
 exports.validerStage = validerStage;

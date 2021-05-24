@@ -6,11 +6,11 @@ const Schema =mongoose.Schema
 
 const planningSchema =new Schema(
    { jour : {type:String,required:true },
-    heureDebut : {type:String},
-    heureFin : {type:String },
+    heureDebut : {type:String,required:true },
+    heureFin : {type:String,required:true },
     stageId:{  type: mongoose.Types.ObjectId, ref:'Stage' },
-    jury:[{ enseignant:{  type: mongoose.Types.ObjectId , ref:'Enseignant' },role:{type:String,required:true }}],
-    salle : {type:Array}
+    jury:[{  type: mongoose.Types.ObjectId , ref:'Enseignant' }],
+    salle : {type:Array,required: true}
     
 }
 )

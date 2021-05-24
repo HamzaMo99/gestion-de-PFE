@@ -52,12 +52,10 @@ function SignIn(props) {
                 
 
                 props.onLoginSucceed(responseData.userId,responseData.user)
-                console.log(responseData.user)
                
               
                 if(role==='0'){
                     props.history.push('/student');
-                    
                     
                 }
                 if(role==='1'){
@@ -67,7 +65,9 @@ function SignIn(props) {
                 if(role==='2'){
                     props.history.push('/chefdept');
                 }
-                
+                if(role==='3'){
+                props.history.push('/admin');
+                }
             }
 
             

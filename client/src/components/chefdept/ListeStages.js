@@ -7,7 +7,7 @@ import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner'
 import './chefdept.css'
 import ErrorModal from '../modals/ErrorModal';
-import Liste from './Liste.js/Liste'
+import Liste  from './Liste.js/Liste'
 
 
 
@@ -121,7 +121,7 @@ async function validHandler(e){
       <div className="table">
 
       { loaded ?
-            <Liste
+            <Liste 
           
             data={stages}
             pageLimit={3}

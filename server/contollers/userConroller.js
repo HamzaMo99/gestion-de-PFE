@@ -41,6 +41,7 @@ const login = async (req,res,next) =>{
       responsedata.filiere = filiere;
       role='0';
       if(responsedata.stageId !=null){
+        console.log("helloo")
 
        try {
         stageInfo = await Stage.findById(responsedata.stageId)
@@ -63,6 +64,11 @@ const login = async (req,res,next) =>{
     if(user.typeUser==='2')
     {     
       role='2';
+      responsedata=user
+    }
+    if(user.typeUser==='3')
+    {     
+      role='3';
       responsedata=user
     }
 

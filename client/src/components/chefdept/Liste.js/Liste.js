@@ -52,16 +52,14 @@ export default function Liste({
         <Table bordered hover >
         <thead className="tableHead">
           <tr>
-          <th>Etudiants</th>
             <th>Sujet</th>
             <th>Date de soumission</th>
             <th>pdf</th>
-          
+            <th>Etudiants</th>
             <th> Etat</th>
             <th>Action</th>
           </tr>
         </thead>
-        
        
         <tbody>
     
@@ -71,15 +69,13 @@ export default function Liste({
              
                 return(
                     <tr key={x._id}> 
-
-                       
-                        <td ><Link  to={"/chefdept/"+x._id } > {x.etudiants.map(e=>{return (<div key={e._id}> {e.nom+" " +e.prenom} </div> )})} </Link></td>
-
+                      
                         <td> <Link  to={ "/chefdept/"+x._id} exact="true" >{x.description} </Link>  </td>
                         <td > <Link  to={"/chefdept/"+x._id} >{x.dateDebut} </Link> </td>
                         <td><a href={"http://localhost:5000/"+x.docs[0].url}> <i className="far fa-file-pdf" style={{fontSize:"32px",color:"red"}}></i>  </a> </td>
                       
-                       
+                        <td ><Link  to={"/chefdept/"+x._id } > {x.etudiants.map(e=>{return (<div key={e._id}> {e.nom+" " +e.prenom} </div> )})} </Link></td>
+
                         {/* add etat de stage */}
                         
                         <td ><Link  to={"/chefdept/"+x._id } > {x.signatureDept == 1 ? "Valide" : "Non Valide"} </Link></td>
