@@ -5,6 +5,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const usersRoutes = require('./routes/users')
 const stageRoutes =require('./routes/stage')
+const juryRoutes =require('./routes/jury')
 const planningRoutes =require('./routes/planning')
 const conversationRoutes =require('./routes/conversationRoutes')
 const enseignantRoutes =require('./routes/enseignantRoutes')
@@ -70,7 +71,7 @@ app.use('/api/stages', stageRoutes);
 app.use('/api/conversation',conversationRoutes);
 app.use('/api/enseignant', enseignantRoutes);
 app.use('/api/planning', planningRoutes);
-
+app.use('/api/affectation', juryRoutes);
 app.use('/api/students', studentsRoutes);
 
 // app.use((error, req, res, next) => {

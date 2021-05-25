@@ -65,9 +65,7 @@ function SignIn(props) {
                 if(role==='2'){
                     props.history.push('/chefdept');
                 }
-                if(role==='3'){
-                props.history.push('/admin');
-                }
+                
             }
 
             

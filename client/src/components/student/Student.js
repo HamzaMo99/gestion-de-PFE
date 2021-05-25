@@ -9,8 +9,8 @@ import Homepage from "../util/homepage/HomePage";
 function Student() {
 
     const menu = [{ menu: "Homepage", icon: "fa fa-home", to: "/student" },
-    { menu: "Ma Soumission", icon: " fa-folder-open", to: "/student/soumission" },
-    { menu: "Coversations", icon: "fa  fa-comments-alt", to: "/student/conversation" }
+    { menu: "Ma Soumission", icon: "far fa-folder-open", to: "/student/soumission" },
+    { menu: "Coversations", icon: "fas fa-comments-alt", to: "/student/conversation" }
 
     ]
 

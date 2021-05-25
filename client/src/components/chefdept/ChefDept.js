@@ -10,18 +10,16 @@ import Conversations from '../util/Conversations/conversation'
 import Planning from './planning/Planning';
 import NewPlanning from './planning/newPlanning/NewPlanning';
 import Homepage from "../util/homepage/HomePage"
+import NewJury from "./juryAffectation/NewJury"
 
 function ChefDept(){
 
 
     const menu=[{menu:"Liste des stages",icon:"fas fa-list",to:"/chefdept/listestages"},
                {menu:"Planning PFE",icon:"fas fa-calendar-alt",to:"/chefdept/planning"},
-               { menu: "Coversations", icon: "fas fa-comments-alt", to: "/chefdept/conversation" }
-            
+               { menu: "Coversations", icon: "fas fa-comments-alt", to: "/chefdept/conversation" },
+               { menu: "Affecter les Jury", icon: "fas fa-comments-alt", to: "/chefdept/newJury" }
             ]
-
-
-
     return(
         <div className="student">
 
@@ -43,9 +41,13 @@ function ChefDept(){
              <Route path="/chefdept/planning" >
                     <Planning />
                  </Route>
+                 <Route path="/chefdept/newJury" >
+                    <NewJury />
+                 </Route>
                  <Route path="/chefdept/newPlanning" >
                     <NewPlanning />
                  </Route>
+                
                  <Route path="/chefdept/conversation/:to">
                         
                         <Conversation/>

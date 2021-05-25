@@ -7,7 +7,7 @@ import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner'
 import './chefdept.css'
 import ErrorModal from '../modals/ErrorModal';
-import Liste  from './Liste.js/Liste'
+import Liste from './Liste.js/Liste'
 
 
 
@@ -26,8 +26,6 @@ useEffect(() => {
 
   axios.get('http://localhost:5000/api/stages')
   .then(function (response) {
-   
-
     setStages(response.data.stages)
     setLoaded(true)
     
@@ -58,9 +56,6 @@ async function validHandler(e){
 
             setError(responseData.message)
             setShow(true);
-            
-    
-      
       } catch (error) {
            setError(error)
             setShow(true);
@@ -121,7 +116,7 @@ async function validHandler(e){
       <div className="table">
 
       { loaded ?
-            <Liste 
+            <Liste
           
             data={stages}
             pageLimit={3}
