@@ -8,7 +8,6 @@ import Spinner from 'react-bootstrap/Spinner'
 import './chefdept.css'
 import ErrorModal from '../modals/ErrorModal';
 import { DataGrid } from '@material-ui/data-grid';
-import Liste  from './Liste.js/Liste'
 
 
 
