@@ -33,7 +33,7 @@ function App(props) {
                 <Route path='/chefdept'>
                    {props.isLoged ?  <ChefDept/> : <Redirect to="/" /> }
                 </Route>
-
+                
                 <Route path='/admin'>
                    { props.isLoged ?  <Admin/> : <Redirect to="/" /> }
                 </Route>
