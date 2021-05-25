@@ -9,8 +9,13 @@ import Homepage from "../util/homepage/HomePage";
 function Student() {
 
     const menu = [{ menu: "Homepage", icon: "fa fa-home", to: "/student" },
+<<<<<<< HEAD
     { menu: "Ma Soumission", icon: "far fa-folder-open", to: "/student/soumission" },
     { menu: "Coversations", icon: "fas fa-comments-alt", to: "/student/conversation" }
+=======
+    { menu: "Mon PFE", icon: "far fa-folder-open", to: "/student/soumission" },
+    { menu: "Coversations", icon: "fa  fa-comments-alt", to: "/student/conversation" }
+>>>>>>> 4d0ae37e836c41f8af3319bdf6bcb73a225c8861
 
     ]
 

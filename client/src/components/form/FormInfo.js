@@ -57,6 +57,18 @@ const FormInfo = (props) => {
     setSelectedBinome(selectedBinome);
   };
 
+  const [etatStage, setetatStage] = useState(false)
+
+
+
+ 
+
+
+
+
+
+
+
   //getting students
 
   useEffect(() => {
@@ -80,6 +92,16 @@ const FormInfo = (props) => {
       .get("http://localhost:5000/api/enseignant")
       .then(function (response) {
         let t = [];
+
+        if(props.userInfo.stageId != null){
+          console.log(etatStage)
+          if(props.userInfo.stage.signatureDept == 1)
+          {
+            console.log("FF")
+            setetatStage(true)
+          }
+        }
+
 
         response.data.enseignants.map((x) => {
           t.push({ value: x._id, label: x.nom + " " + x.prenom });
@@ -183,6 +205,7 @@ const FormInfo = (props) => {
                 setBinome(e.target.value);
                 console.log(e.target.value);
               }}
+              disabled={etatStage}
             >
               <option value="d-none">Monôme</option>
               <option value="">Binôme</option>
@@ -234,6 +257,7 @@ const FormInfo = (props) => {
               className="text-muted"
               text=""
               readonly={true}
+      
             />
           </div>
           <div className="col-lg-6">
@@ -320,6 +344,9 @@ const FormInfo = (props) => {
               value={email}
               inputValue={email}
               setInput={setEmail}
+              
+              readonly={etatStage}
+
             />
           </div>
         </div>
@@ -336,6 +363,7 @@ const FormInfo = (props) => {
               value={tel}
               inputValue={tel}
               setInput={setTel}
+              readonly={etatStage}
             />
           </div>
 
@@ -349,6 +377,8 @@ const FormInfo = (props) => {
               value={organisme}
               inputValue={organisme}
               setInput={setOrganisme}
+
+              readonly={etatStage}
             />
           </div>
         </div>
@@ -365,6 +395,7 @@ const FormInfo = (props) => {
               value={rep}
               inputValue={rep}
               setInput={setRep}
+              readonly={etatStage}
             />
           </div>
 
@@ -378,6 +409,7 @@ const FormInfo = (props) => {
               value={encExterne}
               inputValue={encExterne}
               setInput={setEncExterne}
+              readonly={etatStage}
             />
           </div>
         </div>
@@ -393,6 +425,7 @@ const FormInfo = (props) => {
               value={description}
               inputValue={description}
               setInput={setDescription}
+              readonly={etatStage}
             />
           </div>
 
@@ -404,6 +437,7 @@ const FormInfo = (props) => {
               value={selectedProfs}
               onChange={setSelectedProfs}
               labelledBy={"Select"}
+              disabled={etatStage}
             />
           </div>
 
@@ -420,6 +454,8 @@ const FormInfo = (props) => {
               value={ville}
               inputValue={ville}
               setInput={setVille}
+
+              readonly={etatStage}
             />
           </div>
 
@@ -433,6 +469,7 @@ const FormInfo = (props) => {
               value={pays}
               inputValue={pays}
               setInput={setPays}
+              readonly={etatStage}
             />
           </div>
         </div>
@@ -445,6 +482,8 @@ const FormInfo = (props) => {
             <DatePicker
               selected={startDate}
               onChange={(date) => setStartDate(date)}
+
+              readOnly={etatStage}
             />
           </div>
 
@@ -457,24 +496,29 @@ const FormInfo = (props) => {
               selected={finDate}
               onChange={(date) => {
                 setFinDate(date);
+
               }}
+              readOnly={etatStage}
             />
           </div>
         </div>
 
 
-        <div className="col-lg-6">
+{  etatStage ? "" : 
+       <div className="col-lg-6">
           <FileUpload setFile={setFile} />
-        </div>
+        </div>}
 
-        <Button
+ {  etatStage ? "" :    <Button
           variant="primary"
           type="submit"
           style={submitButtonStyle}
           onClick={submitStage}
+
+          disabled={etatStage}
         >
           Enregistrer
-        </Button>
+        </Button>}
       </Form>
     </React.Fragment>
   );

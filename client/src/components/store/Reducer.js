@@ -17,6 +17,15 @@ const reducer = (state=initialState,action) =>{
         }
     }
 
+    if(action.type===ActionsTypes.LOGOUT){
+        return {
+
+            isLoged:false,
+            userId:null,
+            userInfo:{}
+        }
+    }
+
 
     return state;
 }
