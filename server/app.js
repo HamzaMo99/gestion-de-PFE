@@ -9,6 +9,8 @@ const planningRoutes =require('./routes/planning')
 const conversationRoutes =require('./routes/conversationRoutes')
 const enseignantRoutes =require('./routes/enseignantRoutes')
 const studentsRoutes =require('./routes/students')
+
+const filiereRoutes =require('./routes/filiereRoutes')
 const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 const stage = require ("./models/stage");
 const cors = require("cors");
@@ -72,6 +74,7 @@ app.use('/api/enseignant', enseignantRoutes);
 app.use('/api/planning', planningRoutes);
 
 app.use('/api/students', studentsRoutes);
+app.use('/api/filieres', filiereRoutes);
 
 // app.use((error, req, res, next) => {
 
