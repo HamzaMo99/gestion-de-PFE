@@ -7,8 +7,12 @@ import axios from 'axios'
 import Spinner from 'react-bootstrap/Spinner'
 import './chefdept.css'
 import ErrorModal from '../modals/ErrorModal';
+<<<<<<< HEAD
+import Liste from './Liste.js/Liste'
+=======
 import { DataGrid } from '@material-ui/data-grid';
 import Liste  from './Liste.js/Liste'
+>>>>>>> 4d0ae37e836c41f8af3319bdf6bcb73a225c8861
 
 
 
@@ -23,7 +27,21 @@ function ListeStages() {
   const [error, setError] = useState("");
   const [rows, setrows] = useState([]);
 
+<<<<<<< HEAD
+useEffect(() => {
 
+  axios.get('http://localhost:5000/api/stages')
+  .then(function (response) {
+    setStages(response.data.stages)
+    setLoaded(true)
+    
+  })
+  .catch(function (error) {
+    
+  })
+=======
+
+>>>>>>> 4d0ae37e836c41f8af3319bdf6bcb73a225c8861
 
 
 async function validHandler(e){
@@ -46,9 +64,6 @@ async function validHandler(e){
 
             setError(responseData.message)
             setShow(true);
-            
-    
-      
       } catch (error) {
            setError(error)
             setShow(true);
@@ -171,6 +186,11 @@ const columns = [
 
       <div className="table">
 
+<<<<<<< HEAD
+      { loaded ?
+            <Liste
+          
+=======
 
       <div className="bg-white" style={{ height: 400, width: '100%' }}>
       <DataGrid rows={rows} columns={columns} pageSize={5} />
@@ -178,6 +198,7 @@ const columns = [
 
       {/* { loaded ?
             <Liste          
+>>>>>>> 4d0ae37e836c41f8af3319bdf6bcb73a225c8861
             data={stages}
             pageLimit={3}
             dataLimit={10}

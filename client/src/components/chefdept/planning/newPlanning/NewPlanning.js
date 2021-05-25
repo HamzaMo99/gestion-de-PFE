@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Col } from 'react-bootstrap';
-import Datepicker from "react-datepicker";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import TimePicker from 'react-bootstrap-time-picker';
 import './NewPlanning.css';
-import { Row } from 'react-bootstrap'
 import MultiSelect from "react-multi-select-component";
 import axios from 'axios';
-import { connect } from "react-redux";
 import Select from 'react-select'
 
 

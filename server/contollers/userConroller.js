@@ -66,11 +66,6 @@ const login = async (req,res,next) =>{
       role='2';
       responsedata=user
     }
-    if(user.typeUser==='3')
-    {     
-      role='3';
-      responsedata=user
-    }
 
     res.json({message:'logged in',user:responsedata,role:role,userId:user._id})
 }

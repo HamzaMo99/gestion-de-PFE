@@ -7,7 +7,6 @@ import ChefDept from './components/chefdept/ChefDept'
 import { connect } from "react-redux";
 import CommentStage from "./components/enseignant/Commentaire/CommentStage";
 import Enseignant from './components/enseignant/Enseignant';
-import Admin from './components/admin/Admin';
 
 function App(props) {
   return (
@@ -32,10 +31,6 @@ function App(props) {
 
                 <Route path='/chefdept'>
                    {props.isLoged ?  <ChefDept/> : <Redirect to="/" /> }
-                </Route>
-
-                <Route path='/admin'>
-                   { props.isLoged ?  <Admin/> : <Redirect to="/" /> }
                 </Route>
 
               

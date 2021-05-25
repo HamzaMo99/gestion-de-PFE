@@ -1,10 +1,13 @@
 import React,{useState} from 'react'
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
-
+import {useHistory} from 'react-router-dom' ;
 function ErrorModal(props) {
-  
-    const handleClose = () => props.setShow(false);
+  const history = useHistory();
+    const handleClose = () =>{
+      props.setShow(false);
+      history.push(props.path);
+    } 
     const handleShow = () => props.setShow(true);
 
     const ref= React.createRef();
