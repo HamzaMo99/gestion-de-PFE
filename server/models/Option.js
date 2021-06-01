@@ -11,7 +11,7 @@ const optionSchema =new Schema(
 
      etudiants:[{  type: mongoose.Types.ObjectId , ref:'Etudiant' }],
 
-     filiere : {type:MongoServerSelectionError.Types.ObjectId,ref:'Filiere'}
+     filiere : {type: mongoose.Types.ObjectId,ref:'Filiere'}
     
   }
 )

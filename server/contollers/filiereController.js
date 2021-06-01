@@ -2,6 +2,9 @@ const HttpError = require('../models/Http-error')
 const mongoose = require('mongoose')
 const Filiere = require('../models/filiere')
 const Etudiant = require('../models/etudiant')
+const Option = require('../models/Option')
+const filiere = require('../models/filiere')
+//const filiere = require('../models/filiere')
 
 
 
@@ -14,7 +17,7 @@ const filieres= async(req,res,next) =>{
 
     let filieres;
     try {
-     filieres = await Filiere.find({}).populate('etudiants', "");  
+     filieres = await Filiere.find({}).populate('etudiants, options', "");  
     } catch (err) {
       const error = new HttpError(
         'Fetching filieres failed, please try again later.',
@@ -26,6 +29,37 @@ const filieres= async(req,res,next) =>{
     res.status(201).json({filieres:filieres});
 }
 
+
+// add omptions
+const addOptions= async(req,res,next) =>{
+   const {filiereId, nom} = req.body;
+  let options, filiere;
+
+  try {
+   filiere = await Filiere.findById(filiereId);
+   console.log("filieeeeeeer");
+   console.log(filiere);
+  } catch (err) {
+    const error = new HttpError(
+      'Fetching filieres failed, please try again later.',
+      500
+    );
+    return next(error);
+  }  
+  const option = new Option({
+    nomOption : nom,
+    filiere : filiere
+  });
+  const sess = await mongoose.startSession(); // open a session
+  sess.startTransaction();
+ 
+   await option.save({session: sess} );
+   filiere.options.push(option);
+   await filiere.save();
+  sess.commitTransaction();
+
+  res.status(201).json({msg : "option added "});
+}
 
 
 const studentsByfiliere= async(req,res,next) =>{
@@ -46,4 +80,5 @@ const studentsByfiliere= async(req,res,next) =>{
 
 
 exports.filieres = filieres;
+exports.addOptions = addOptions;
 exports.studentsByfiliere = studentsByfiliere;

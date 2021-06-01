@@ -1,12 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
-import Select from "react-select";
+import React, {useEffect, useState} from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import axios from "axios";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import Select from "react-select";
 
-
-export default function Student() {
-
+export default function Enseignant() {
   const [selectedFiliere, setSelectedFiliere] = useState("");
 
   const [filieres, setFiliere] = useState([]);
@@ -14,26 +12,10 @@ export default function Student() {
   const [loaded, setloaded] = useState(false)
 
   const columns = [
-    { field: 'id', headerName: 'CNE', width: 150 },
-    { field: 'firstName', headerName: 'PRENOM', width: 150 },
-    { field: 'lastName', headerName: 'NOM', width: 150 },
-    { field: 'dateNaissance',headerName: 'DATE DE NAISSANCE',type: 'date',width: 150},
-    { field: 'genre',headerName: 'Genre',width: 120},
-    { field: 'email',headerName: 'EMAIL',width: 160},
-    { field: 'option',headerName: 'Option',width: 160,
-    renderCell: (params) => (
-  
-        <a
-          variant="contained"
-          color="primary"
-          size="small"
-          style={{ marginLeft: 16 }}
-          href={params.value}
-        >
-          Open
-        </a>
-      )},
-  ];
+    { field: 'id', headerName: 'Nom', width: 150 },
+    { field: 'prenom', headerName: 'Prenom', width: 150 },
+    { field: 'email',headerName: 'EMAIL',width: 160}
+    ]
     
     const [rows, setrows] = useState([]);
   // const rows = [
@@ -60,7 +42,7 @@ export default function Student() {
       axios
         .get("http://localhost:5000/api/filieres")
         .then(function (response) {
-          let t = [],r=[];
+          let t = [];
   
           response.data.filieres.map((x) => {
             t.push({ value: x._id, label: x.nomFiliere });
@@ -105,8 +87,8 @@ export default function Student() {
           </div>
 
               <div class="col-sm-4">
-                <Link to='/admin/etudiants/add'>
-                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Ajouter Nouveau Etudiant</button>
+                <Link to='/admin/enseignants/add'>
+                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Ajouter un Nouveau Enseignant </button>
                 </Link>
                   
               </div>
